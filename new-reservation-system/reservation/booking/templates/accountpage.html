@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <title>Account Page</title>
+    {% load static %}
+    <link href="{% static 'accountpage.css' %}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="center">
+        {% csrf_token %}
+        <h1> Hello {{cur_user.username}}!</h1>
+        <h1> Currently you have {{cur_user.points}} rewards points earned in your account </h1>
+        <div class="guest_reservation">
+              Reserve a Table for your next visit to gain reward points! <a href="/reservation"> ClickHere </a>
+        </div>
+        <!-- <form method="post">
+            <div class="txt_field">
+                <input type="text" required id="name" name="name" >
+                <span></span>
+                <label>Name</label>
+            </div>
+        </form> -->
+    </div>
+</body>
+</html>

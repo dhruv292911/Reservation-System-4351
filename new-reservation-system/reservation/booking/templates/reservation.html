@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <title>Reservation Page</title>
+    {% load static %}
+    <link href="{% static 'reservationstyle.css' %}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="center">
+        <h1> Reserve Table</h1>
+        <form method="post" id="form" action="/reservation">
+            {% csrf_token %}
+            <div class="txt_field">
+                <input type="text" required id="name" name="name" >
+                <span></span>
+                <label>Name</label>
+            </div>
+            <div class="txt_field">
+                <input type="tel" required id="phone_num" name="phone_num" minlength="10" maxlength="10" >
+                <span></span>
+                <label>Enter Phone Number</label>
+            </div>
+            <div class="txt_field">
+                <input type="email" required id="email" name="email" >
+                <span></span>
+                <label>Enter Email Address</label>
+            </div>
+            <div class="txt_field">
+                <input type="number" required min = "1" max = "100" id="partysize" name="partysize">
+                <span></span>
+                <label>Number of Guests</label>
+            </div>
+            <div class="txt_field">
+                <input type="date" required id = "date" name="date"> 
+                <span></span>
+                <label>Choose Date</label>
+            </div>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+    <script>
+        var date = new Date();
+        var tdate = date.getDate();  //get Date returns the current day
+        var month = date.getMonth() + 1; //get month method returns previous month so we added 1
+        if(month < 10){
+            month = "0" + month;   //we are adding 0 in front of the month string if it is one digit
+        }
+        if(tdate < 10){
+            tdate = '0' + tdate;
+        }
+        var year = date.getFullYear(); //this method returns current year
+        var minDate = year + "-" + month + "-" + tdate;
+        var max_year = year + 1;
+        var maxDate = max_year + "-" + month + "-" + tdate;
+        document.getElementById("date").setAttribute('min' , minDate);
+        document.getElementById("date").setAttribute('max' , maxDate);
+        console.log(minDate);
+    </script>
+</body>
+</html>

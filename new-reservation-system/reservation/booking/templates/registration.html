@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <title>Customer Account Registration</title>
+    {% load static %}
+    <link href="{% static 'registrationstyle.css' %}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="center">
+        <h1> Customer Registration</h1>
+        <form method="post" id="form" action="/registration">
+            {% csrf_token %}
+            <div class="txt_field">
+                <input type="text" id="username" name = "username" required>
+                <span></span>
+                <label>Create Username</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" id="pass1" name="pass1" required>
+                <span></span>
+                <label>New Password</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" id="pass2" name="pass2" required>
+                <span></span>
+                <label>Confirm Password</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" id="mailingaddress" name="mailingaddress"required>
+                <span></span>
+                <label>Mailing Address</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" id="billingaddress" name="billingaddress"required>
+                <span></span>
+                <label>Billing Address</label>
+            </div>
+            <fieldset>
+                <legend>Select your Preferred Payment method:</legend>
+                
+                <input type="radio" name="payment_method" value="credit" id="cred" required >
+                <label for="cred">Credit</label>
+                
+                <input type="radio" name="payment_method" value="cash" id="cash">
+                <label for="cash">Cash</label>
+                
+                <input type="radio" name="payment_method" value="check" id="check">
+                <label for="check">Check</label>
+            </fieldset>
+            <div class="txt_field">
+                <input type="tel" id="credit_card" name="credit_card" minlength="16" maxlength="16" pattern="[0-9\s]{13,19}" required>
+                <span></span>
+                <label>Enter Credit Card Number</label>
+            </div>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+</body>
+</html>

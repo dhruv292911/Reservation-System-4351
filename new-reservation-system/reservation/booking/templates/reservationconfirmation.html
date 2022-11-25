@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <title>Account Page</title>
+    {% load static %}
+    <link href="{% static 'accountpage.css' %}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="center">
+        {% csrf_token %}
+        <h1> Your reservation is confirmed. We hope you enjoy your next meal!  We like to remind you that 10$ will be penalized 
+            for a no show on weekends or high traffic holidays: July 4th, Christmas Day, Thanksgiving and New Years Day.  
+        </h1>
+    </div>
+</body>
+</html>
