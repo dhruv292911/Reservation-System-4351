@@ -208,18 +208,23 @@ def reservation(request):
 
 def login(request):
     if request.method == "POST":
-
         accountname = request.POST['username']
+        entered_password = request.POST['pass1']
 
-        current_user = registeredUser.objects.get(username= accountname)
+        if registeredUser.objects.filter(username = accountname).first() is not None:
+            
+            stored_password = registeredUser.objects.get(username = accountname).password
 
-        #template = loader.get_template('accountpage.html')
+            if entered_password != stored_password:
+                return HttpResponse("Password does not match! Please reload and try again with a different password")
+            
+            
+            current_user = registeredUser.objects.get(username= accountname)
+            
+            
+            return render(request, "accountpage.html", {'cur_user': current_user})  # what we call it here (lhs) is what we can call it in the template
 
-        # context = {
-        #     'cur_user' : current_user
-        # }
-
-        return render(request, "accountpage.html", {'cur_user': current_user})  # what we call it here (lhs) is what we can call it in the template
-    
+        else: 
+            return HttpResponse("Username does not exist! Please reload and try again with a different password")
     
     return HttpResponse("Hello you are logged in")
